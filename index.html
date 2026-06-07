@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Maths Trumps — a brilliant educational maths card game for all ages. Learn maths the fun way! Winner of Theo Paphitis's #SBS Award. 6 exciting packs available from Tarquin Publications.">
+<meta name="keywords" content="Maths Trumps, maths card game, educational card game, maths game, KS3 maths, GCSE maths, maths fun, Tarquin, Rachel Riley, Theo Paphitis, SBS winner">
+<meta property="og:title" content="Maths Trumps — Learn Maths the Fun Way!">
+<meta property="og:description" content="A brilliant educational maths card game. 6 exciting packs. Winner of Theo Paphitis's #SBS Award.">
+<meta property="og:type" content="website">
+<title>Maths Trumps — Learn Maths the Fun Way!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0d0d0d;
+  --white:#ffffff;
+  --red:#e8272a;
+  --red-dark:#c01f22;
+  --yellow:#ffe000;
+  --yellow-dark:#f0d000;
+  --teal:#00897b;
+  --teal-dark:#00695c;
+  --bg:#f5f3ee;
+  --off-white:#faf9f6;
+  --muted:#555555;
+  --border:#e0ddd6;
+  --card:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:60px;
+  box-shadow:0 3px 12px rgba(232,39,42,0.4);
+}
+.nav-logo{
+  font-family:'Fraunces',serif;font-size:1.15rem;color:var(--white);
+  text-decoration:none;font-weight:700;
+  cursor:pointer;
+}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{
+  color:rgba(255,255,255,0.85);text-decoration:none;font-size:0.82rem;
+  font-weight:500;padding:0 0.85rem;height:60px;display:flex;align-items:center;
+  transition:background 0.15s,color 0.15s;white-space:nowrap;
+}
+.nav-links a:hover{background:rgba(0,0,0,0.15);color:var(--white);}
+.nav-links a.active{background:rgba(0,0,0,0.2);color:var(--yellow);}
+
+/* ── PAGE SYSTEM ── */
+.mt-page{display:none;}
+.mt-page.active{display:block;}
+
+/* ── HERO ── */
+.hero{
+  background:var(--ink);
+  padding:4rem 2rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/editor/all-6-maths-trumps-packs.jpg?1512223089') center/cover no-repeat;
+  opacity:0.15;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+  gap:4rem;align-items:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(255,224,0,0.15);border:1px solid rgba(255,224,0,0.35);
+  color:var(--yellow);font-size:0.75rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.4rem 1rem;border-radius:100px;margin-bottom:1.25rem;
+}
+.hero h1{
+  font-family:'Fraunces',serif;font-size:clamp(2rem,3.5vw,3rem);
+  color:var(--white);line-height:1.15;margin-bottom:0.5rem;font-weight:700;
+}
+.hero h1 em{color:var(--yellow);font-style:italic;}
+.hero-tagline{
+  font-family:'Fraunces',serif;font-style:italic;
+  color:rgba(255,255,255,0.7);font-size:1.1rem;margin-bottom:1.5rem;
+}
+.hero-desc{color:rgba(255,255,255,0.65);font-size:0.97rem;line-height:1.8;margin-bottom:2rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-yellow{
+  background:var(--yellow);color:var(--ink);padding:0.85rem 1.75rem;
+  border-radius:100px;text-decoration:none;font-weight:700;font-size:0.95rem;
+  transition:background 0.2s,transform 0.15s;display:inline-block;
+}
+.btn-yellow:hover{background:var(--yellow-dark);transform:translateY(-2px);}
+.btn-outline{
+  background:transparent;color:rgba(255,255,255,0.8);padding:0.85rem 1.75rem;
+  border-radius:100px;text-decoration:none;font-size:0.95rem;
+  border:1.5px solid rgba(255,255,255,0.3);transition:border-color 0.2s;display:inline-block;
+  cursor:pointer;
+}
+.btn-outline:hover{border-color:var(--white);color:var(--white);}
+
+/* hero right */
+.hero-awards{display:flex;flex-direction:column;gap:1rem;}
+.award-card{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;padding:1.25rem;display:flex;gap:1rem;align-items:center;
+}
+.award-card img{width:70px;height:70px;object-fit:contain;border-radius:6px;flex-shrink:0;}
+.award-card-text h4{font-size:0.9rem;font-weight:700;color:var(--yellow);margin-bottom:0.2rem;}
+.award-card-text p{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.5;}
+
+/* ── SECTION BASE ── */
+section{padding:5rem 2rem;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:0.6rem;color:var(--red);}
+.section-title{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--ink);line-height:1.2;margin-bottom:1rem;}
+.section-intro{color:var(--muted);font-size:1rem;line-height:1.8;max-width:640px;margin-bottom:3rem;}
+
+/* ── WHAT IS ── */
+.what{background:var(--white);}
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.what-text p{color:var(--muted);line-height:1.85;margin-bottom:1.1rem;font-size:0.97rem;}
+.what-text p strong{color:var(--ink);}
+.what-text h3{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--red);margin:1.5rem 0 0.5rem;}
+.what-img{border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.12);}
+.what-img img{width:100%;display:block;}
+
+/* Rachel Riley */
+.rachel-strip{
+  background:var(--yellow);padding:2rem;
+  border-radius:12px;margin-top:1.5rem;
+  display:flex;align-items:center;gap:1.5rem;
+}
+.rachel-strip img{width:100%;max-width:500px;border-radius:8px;display:block;}
+.rachel-text p{font-size:0.9rem;color:var(--ink);line-height:1.6;}
+.rachel-text strong{font-size:1rem;}
+
+/* ── PACKS ── */
+.packs{background:var(--bg);}
+.packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.pack-card{
+  background:var(--white);border:1.5px solid var(--border);border-radius:12px;
+  overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;
+}
+.pack-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.1);}
+.pack-card img{width:100%;display:block;object-fit:contain;background:var(--white);}
+.pack-card-body{padding:1rem 1.25rem;}
+.pack-card-body h4{font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.4rem;}
+.pack-card-body p{font-size:0.82rem;color:var(--muted);line-height:1.5;margin-bottom:0.75rem;}
+.btn-pack{
+  display:inline-block;background:var(--red);color:var(--white);
+  padding:0.5rem 1.1rem;border-radius:100px;text-decoration:none;
+  font-size:0.8rem;font-weight:700;transition:background 0.2s;
+}
+.btn-pack:hover{background:var(--red-dark);}
+
+/* multipack */
+.multipack{
+  margin-top:2rem;background:var(--ink);border-radius:12px;
+  padding:2rem;display:flex;gap:2rem;align-items:center;
+}
+.multipack img{width:280px;border-radius:8px;display:block;flex-shrink:0;}
+.multipack-text h3{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--yellow);margin-bottom:0.75rem;}
+.multipack-text p{color:rgba(255,255,255,0.7);font-size:0.95rem;line-height:1.8;margin-bottom:1.25rem;}
+
+/* ── HOW TO PLAY ── */
+.howtoplay{background:var(--white);}
+.rules-list{display:flex;flex-direction:column;gap:1rem;margin-top:1rem;}
+.rule{display:flex;gap:1.25rem;align-items:flex-start;}
+.rule-num{
+  width:32px;height:32px;border-radius:50%;background:var(--red);
+  color:var(--white);font-weight:800;font-size:0.9rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.rule p{color:var(--muted);font-size:0.95rem;line-height:1.75;}
+.rule p strong{color:var(--ink);}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{background:var(--bg);}
+.test-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.test-card{
+  background:var(--white);border:1.5px solid var(--border);
+  border-left:4px solid var(--yellow);
+  border-radius:8px;padding:1.25rem 1.5rem;
+}
+.test-card blockquote{font-family:'Fraunces',serif;font-style:italic;font-size:0.95rem;color:var(--ink);line-height:1.7;}
+
+/* ── CASE STUDY ── */
+.casestudy{background:var(--ink);}
+.casestudy .section-label{color:var(--yellow);}
+.casestudy .section-title{color:var(--white);}
+.casestudy .section-intro{color:rgba(255,255,255,0.55);}
+.case-box{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;padding:2rem;
+}
+.case-box p{color:rgba(255,255,255,0.7);font-size:0.92rem;line-height:1.85;margin-bottom:0.85rem;}
+.case-box p strong{color:var(--yellow);}
+.case-box h4{color:var(--yellow);font-size:0.95rem;font-weight:700;margin:1.25rem 0 0.5rem;}
+
+/* ── FAQs PAGE ── */
+.page-content{max-width:900px;margin:0 auto;padding:3.5rem 2rem;}
+.page-heading{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--red);margin-bottom:2rem;padding-bottom:0.5rem;border-bottom:3px solid var(--yellow);display:inline-block;}
+.faq-item{margin-bottom:1.75rem;}
+.faq-item h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.6rem;}
+.faq-item p{color:var(--muted);font-size:0.95rem;line-height:1.8;}
+
+/* ── CONTACT PAGE ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.contact-info p{color:var(--muted);font-size:0.95rem;line-height:1.85;margin-bottom:0.85rem;}
+.contact-info strong{color:var(--ink);}
+.contact-info a{color:var(--red);}
+.contact-form{display:flex;flex-direction:column;gap:0.85rem;}
+.form-group{display:flex;flex-direction:column;gap:0.3rem;}
+.form-group label{font-size:0.78rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.04em;}
+.form-group input,.form-group textarea{
+  border:1.5px solid var(--border);border-radius:8px;
+  padding:0.65rem 0.9rem;font-family:'Outfit',sans-serif;font-size:0.9rem;
+  color:var(--ink);background:var(--off-white);
+  transition:border-color 0.2s;outline:none;
+}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--red);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-submit{
+  background:var(--red);color:var(--white);border:none;
+  padding:0.8rem 2rem;border-radius:100px;
+  font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;
+  cursor:pointer;transition:background 0.2s;align-self:flex-start;
+}
+.form-submit:hover{background:var(--red-dark);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);padding:2rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  border-top:4px solid var(--red);
+}
+.footer-logo{font-family:'Fraunces',serif;color:var(--white);font-size:1rem;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.82rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--yellow);}
+.footer-copy{color:rgba(255,255,255,0.25);font-size:0.75rem;width:100%;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero-inner,.what-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .packs-grid{grid-template-columns:1fr 1fr;}
+  .test-grid{grid-template-columns:1fr;}
+  .multipack{flex-direction:column;}
+  .multipack img{width:100%;}
+  .nav-links a{padding:0 0.5rem;font-size:0.75rem;}
+  section{padding:3.5rem 1.25rem;}
+}
+@media(max-width:600px){
+  .packs-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" onclick="showPage('home');return false;" href="#">Maths Trumps</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home');return false;" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('home');setTimeout(function(){document.getElementById('packs').scrollIntoView();},50);return false;">Purchase</a></li>
+    <li><a href="#" onclick="showPage('home');setTimeout(function(){document.getElementById('howtoplay').scrollIntoView();},50);return false;">Game Instructions</a></li>
+    <li><a href="#" onclick="showPage('testimonials');return false;" id="nav-testimonials">Testimonials</a></li>
+    <li><a href="#" onclick="showPage('faqs');return false;" id="nav-faqs">FAQs</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div id="page-home" class="mt-page active">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">★ #SBS Winner — Chosen by Theo Paphitis</div>
+        <h1>Learn Maths the <em>Fun Way!</em></h1>
+        <p class="hero-tagline">"Revise, Learn and Have Fun"</p>
+        <p class="hero-desc">Maths Trumps is a brilliant educational card game — a unique variant of the much-loved classic trump card games. 6 exciting packs available, suitable for all ages and abilities. It really does make learning maths fun!</p>
+        <div class="hero-actions">
+          <a href="#" onclick="showPage('home');setTimeout(function(){document.getElementById('packs').scrollIntoView();},50);return false;" class="btn-yellow">Buy the Packs</a>
+          <a href="#" onclick="showPage('home');setTimeout(function(){document.getElementById('howtoplay').scrollIntoView();},50);return false;" class="btn-outline">How to Play</a>
+        </div>
+      </div>
+      <div class="hero-awards">
+        <div class="award-card">
+          <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/sbs-winners-badge.png" alt="SBS Winners Badge">
+          <div class="award-card-text">
+            <h4>Official #SBS Winner</h4>
+            <p>Chosen by Theo Paphitis, star of BBC's Dragons' Den — August 2016</p>
+          </div>
+        </div>
+        <div class="award-card">
+          <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/theopaphitis.jpg" alt="Theo Paphitis">
+          <div class="award-card-text">
+            <h4>Theo Paphitis</h4>
+            <p>Dragons' Den star and retail entrepreneur personally selected Maths Trumps as an #SBS winner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What is Maths Trumps -->
+  <section class="what" id="what">
+    <div class="section-inner">
+      <div class="what-grid">
+        <div class="what-text">
+          <p class="section-label">About the Game</p>
+          <h2 class="section-title">What is 'Maths Trumps'?</h2>
+          <p>'Maths Trumps' is a brilliant maths card game — a unique educational variant of the much-loved classic trump card games that have been played and enjoyed around the world for decades.</p>
+          <p>Traditional trump card games rely on players reading out numerical values from a selected category on their first card, and the player whose value is numerically largest wins. <strong>'Maths Trumps' develops this already entertaining card game and turns it into a highly rewarding and fun educational experience.</strong> It really does make learning maths fun!</p>
+          <p>Instead of simply reading out a value from a chosen category, players have to correctly solve a maths question to <em>earn</em> their numerical value. When a player correctly solves their problem, they are then permitted to compare their value with those of their opponents, as per the original game.</p>
+
+          <h3>What is the 'Bonus' Question For?</h3>
+          <p>The 'bonus' question provides the winner of each round with an opportunity to claim an <em>extra</em> card from each of their opponents! If the winner of the round correctly answers the bonus question, they win a further card from each opponent!</p>
+
+          <h3>What is Included in a Pack?</h3>
+          <p>Each pack of 'Maths Trumps' contains: game cards, 'Useful Info' cards, 'Examples' cards, 'Answer' cards, and 'Game Instructions' cards.</p>
+
+          <!-- Rachel Riley -->
+          <div class="rachel-strip">
+            <div>
+              <p><strong>Channel 4's Countdown star Rachel Riley gives 'Maths Trumps' a big thumbs up on Twitter!</strong></p>
+              <img src="https://teachfurthermaths.weebly.com/uploads/1/0/2/8/10286848/6214262_orig.png" alt="Rachel Riley tweets about Maths Trumps" style="margin-top:0.75rem;border-radius:6px;max-width:100%;">
+            </div>
+          </div>
+
+          <!-- Chalkdust Review -->
+          <div style="margin-top:1.5rem;background:var(--off-white);border:1.5px solid var(--border);border-left:4px solid var(--teal);border-radius:10px;padding:1.25rem 1.5rem;">
+            <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.5rem;">Chalkdust Magazine Review</p>
+            <p style="font-family:'Fraunces',serif;font-style:italic;font-size:1rem;color:var(--ink);line-height:1.65;margin-bottom:0.75rem;">"A mathematically-themed version of the classic card game, with several new features... The game's creators were one step ahead and put new twists in to broaden the appeal. Properties are not written on the cards, and must be worked out (against the clock) if you're to win!"</p>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.75rem;">Reviewed by Belgin Seymenoglu, Sean Jamshidi and Eleanor Doman — Chalkdust Magazine, May 2018</p>
+            <a href="https://chalkdustmagazine.com/blog/maths-trumps-review/" target="_blank" style="font-size:0.85rem;font-weight:700;color:var(--teal);text-decoration:none;">Read the full review at Chalkdust Magazine →</a>
+          </div>
+        </div>
+        <div>
+          <div class="what-img">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/editor/all-6-maths-trumps-packs.jpg" alt="All 6 Maths Trumps packs">
+          </div>
+          <div style="margin-top:1rem;border-radius:12px;overflow:hidden;">
+            <img src="https://teachfurthermaths.weebly.com/uploads/1/0/2/8/10286848/published/example-cards.png" alt="Example Maths Trumps cards" style="width:100%;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packs -->
+  <section class="packs" id="packs">
+    <div class="section-inner">
+      <p class="section-label">Purchase</p>
+      <h2 class="section-title">6 Exciting Packs</h2>
+      <p class="section-intro">Click any pack to purchase from Tarquin Publications. Each pack is self-contained and suitable for all ages and abilities.</p>
+      <div class="packs-grid">
+        <div class="pack-card">
+          <a href="https://www.tarquingroup.com/products/maths-trumps-2d-shapes" target="_blank">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/published/2d-shapes.jpg" alt="Maths Trumps 2D Shapes">
+          </a>
+          <div class="pack-card-body">
+            <h4>Maths Trumps — 2D Shapes</h4>
+            <p>Angles, perimeters, areas and more. Perfect for KS3 and GCSE.</p>
+            <a href="https://www.tarquingroup.com/products/maths-trumps-2d-shapes" target="_blank" class="btn-pack">Buy Now</a>
+          </div>
+        </div>
+        <div class="pack-card">
+          <a href="https://www.tarquingroup.com/products/maths-trumps-3d-shapes" target="_blank">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/published/3d-shapes.jpg" alt="Maths Trumps 3D Shapes">
+          </a>
+          <div class="pack-card-body">
+            <h4>Maths Trumps — 3D Shapes</h4>
+            <p>Surface areas, volumes, vertices and more.</p>
+            <a href="https://www.tarquingroup.com/products/maths-trumps-3d-shapes" target="_blank" class="btn-pack">Buy Now</a>
+          </div>
+        </div>
+        <div class="pack-card">
+          <a href="https://www.tarquingroup.com/products/maths-trumps-positive-and-negative-number" target="_blank">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/published/positive-negative.jpg" alt="Maths Trumps Positive and Negative">
+          </a>
+          <div class="pack-card-body">
+            <h4>Maths Trumps — Positive &amp; Negative</h4>
+            <p>Number operations, directed numbers and more.</p>
+            <a href="https://www.tarquingroup.com/products/maths-trumps-positive-and-negative-number" target="_blank" class="btn-pack">Buy Now</a>
+          </div>
+        </div>
+        <div class="pack-card">
+          <a href="https://www.tarquingroup.com/products/maths-trumps-connections" target="_blank">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/published/connections.jpg" alt="Maths Trumps Connections">
+          </a>
+          <div class="pack-card-body">
+            <h4>Maths Trumps — Connections</h4>
+            <p>Number patterns, sequences, relationships and more.</p>
+            <a href="https://www.tarquingroup.com/products/maths-trumps-connections" target="_blank" class="btn-pack">Buy Now</a>
+          </div>
+        </div>
+        <div class="pack-card">
+          <a href="https://www.tarquingroup.com/maths-trumps-snooker.html" target="_blank">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/published/snooker.jpg" alt="Maths Trumps Snooker">
+          </a>
+          <div class="pack-card-body">
+            <h4>Maths Trumps — Snooker</h4>
+            <p>A snooker-themed pack combining maths with sport.</p>
+            <a href="https://www.tarquingroup.com/maths-trumps-snooker.html" target="_blank" class="btn-pack">Buy Now</a>
+          </div>
+        </div>
+        <div class="pack-card">
+          <a href="https://www.tarquingroup.com/maths-trumps-darts.html" target="_blank">
+            <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/published/darts.jpg" alt="Maths Trumps Darts">
+          </a>
+          <div class="pack-card-body">
+            <h4>Maths Trumps — Darts</h4>
+            <p>A darts-themed pack — sport meets maths brilliantly.</p>
+            <a href="https://www.tarquingroup.com/maths-trumps-darts.html" target="_blank" class="btn-pack">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="multipack">
+        <img src="https://mathstrumps.weebly.com/uploads/1/0/2/8/10286848/all-6-maths-trumps-packs_1_orig.jpg" alt="All 6 Maths Trumps packs multipack">
+        <div class="multipack-text">
+          <h3>Best Value — All 6 Packs!</h3>
+          <p>Get all six Maths Trumps packs together in one great value bundle. The ultimate collection for schools, maths departments and serious maths enthusiasts!</p>
+          <a href="https://www.tarquingroup.com/teaching/secondary/tarquin-mathematics-games-offer-2018.html" target="_blank" class="btn-yellow">Buy the Complete Set</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Play -->
+  <section class="howtoplay" id="howtoplay">
+    <div class="section-inner">
+      <p class="section-label">Game Instructions</p>
+      <h2 class="section-title">How to Play</h2>
+      <p class="section-intro">For any number of players. Simple to learn, brilliantly educational to play.</p>
+      <div class="rules-list">
+        <div class="rule"><div class="rule-num">1</div><p>All Maths Trumps cards are shared equally among participants. If any cards are left over, they should be set aside for the winner of the first round to claim.</p></div>
+        <div class="rule"><div class="rule-num">2</div><p><strong>The player with the highest numbered card</strong> (top left corner) chooses a category from their first card.</p></div>
+        <div class="rule"><div class="rule-num">3</div><p>All players answer the question on their own first card for the chosen category. Players should be encouraged to show their calculations on a separate sheet of paper.</p></div>
+        <div class="rule"><div class="rule-num">4</div><p>Answers are checked with those on the 'Answer Card'. <strong>The winner is the player whose correct answer is numerically larger</strong> than the correct answers of each opponent.</p></div>
+        <div class="rule"><div class="rule-num">5</div><p>If there is a tie, or if all players get incorrect answers, the cards are placed aside for the winner of the next round to claim.</p></div>
+        <div class="rule"><div class="rule-num">6</div><p>The winner of each round has the <em>option</em> of asking any opponent to read out their <strong>'Bonus' question</strong>. If correctly answered, they win an extra card from each opponent!</p></div>
+        <div class="rule"><div class="rule-num">7</div><p>The game continues with the winner of each round choosing the category for the next round. <strong>No category may be chosen in consecutive rounds, and all categories must be used during a game.</strong></p></div>
+        <div class="rule"><div class="rule-num">8</div><p><strong>The winner</strong> is the player who claims all cards first, or the player with the most cards at the end of an agreed time limit.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials preview -->
+  <section class="testimonials-section">
+    <div class="section-inner">
+      <p class="section-label">Testimonials</p>
+      <h2 class="section-title">What people are saying</h2>
+      <div class="test-grid">
+        <div class="test-card"><blockquote>"A great resource for teachers to review work done on 2D shapes, and also really useful for parents to play with their children at home. Ideal for 11–16 year olds. I am looking forward to more of these on different topics."</blockquote></div>
+        <div class="test-card"><blockquote>"My son loved the Maths Trumps. It's a great way to make maths a comfortable and fun subject. Doing it as a game makes children approach maths with a different attitude that's very helpful to their learning."</blockquote></div>
+        <div class="test-card"><blockquote>"This game amazed with its genuine fun factor as well as its challenging geometric thinking. Great game."</blockquote></div>
+        <div class="test-card"><blockquote>"The maths behind them is great — really well worked out in lots of detail."</blockquote></div>
+      </div>
+      <p style="margin-top:1.5rem;"><a href="#" onclick="showPage('testimonials');return false;" style="color:var(--red);font-weight:600;text-decoration:none;">Read all testimonials →</a></p>
+    </div>
+  </section>
+
+  <!-- Case Study -->
+  <section class="casestudy">
+    <div class="section-inner">
+      <p class="section-label">In the Classroom</p>
+      <h2 class="section-title">Maths Trumps in Action</h2>
+      <p class="section-intro">A real account from a maths tutor using Maths Trumps with two students.</p>
+      <div class="case-box">
+        <h4>Student Boy B — Year 11, predicted Grade A</h4>
+        <p>Boy B is having 1-to-1 tuition at a tuition centre. He enjoys playing games and usually wins. In two sessions where we played Maths Trumps, I wanted to extend his knowledge and skills because I believe he is Gifted and Talented.</p>
+        <p><strong>Session 1:</strong> Cards were dealt selectively to provide appropriate challenge. He needed me to teach him about rotational symmetry — so we took a break from the game while I taught him that. He made only one mistake throughout, self-corrected quickly, and beat me 10–5.</p>
+        <p><strong>Session 2:</strong> More difficult cards were selected. He had learned how to find the sum of interior angles in irregular polygons and practised this in the game. He won and answered the bonus question correctly — a significant achievement given his difficulties with written mathematical reasoning. <strong>Boy B really enjoyed playing Maths Trumps.</strong></p>
+        <h4>Student Girl A — Year 10, Grade C/D borderline</h4>
+        <p>Girl A lacks confidence and needs help with literacy in maths. Cards were selected to suit her level, with the bonus question used to develop her written reasoning skills.</p>
+        <p>She made one mistake but was able to correct it herself. After playing, she had learned to find the sum of interior angles in regular polygons and practise exterior angle calculations. <strong>She met both learning objectives and really enjoyed playing the game.</strong></p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end page-home -->
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<div id="page-testimonials" class="mt-page">
+  <div class="page-content">
+    <h2 class="page-heading">What Maths Trumps users are saying...</h2>
+    <div style="display:flex;flex-direction:column;gap:1.1rem;">
+      <div class="test-card"><blockquote>"A great resource for teachers to review work done on 2D shapes, and also really useful for parents to play with their children at home. Ideal for 11–16 year olds. I am looking forward to more of these on different topics."</blockquote></div>
+      <div class="test-card"><blockquote>"The maths behind them is great — really well worked out in lots of detail."</blockquote></div>
+      <div class="test-card"><blockquote>"My son loved the Maths Trumps. It's a great way to make maths a comfortable and fun subject. Doing it as a game makes children approach maths with a different attitude that's very helpful to their learning."</blockquote></div>
+      <div class="test-card"><blockquote>"All good, nothing bad!"</blockquote></div>
+      <div class="test-card"><blockquote>"A truly great product."</blockquote></div>
+      <div class="test-card"><blockquote>"Had a great game of Maths Trumps with my 8 year old, but with categories including interior and exterior angles, this card game is great for older kids too. Thanks to PA Hunt for the great game."</blockquote></div>
+      <div class="test-card"><blockquote>"An awesome resource!"</blockquote></div>
+      <div class="test-card"><blockquote>"This game amazed with its genuine fun factor as well as its challenging geometric thinking. Great game."</blockquote></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FAQs ═══════════ -->
+<div id="page-faqs" class="mt-page">
+  <div class="page-content">
+    <h2 class="page-heading">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>Which age group is 'Maths Trumps' aimed at?</h3>
+      <p>'Maths Trumps' is suitable for <em>all</em> ages and abilities. Younger children could initially play using a single category (e.g. number of sides), whereas older and more able players would be expected to use every category, as intended in the full game rules.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will 'Maths Trumps' provide differentiation for my pupils?</h3>
+      <p>Absolutely! The questions and categories vary in difficulty and can be included or omitted as desired during a game. The bonus questions are an optional extra that will really motivate more able players — some of them are quite tricky too!</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can 'Maths Trumps' be played using alternative rules?</h3>
+      <p>By all means, yes! For example, instead of winning a card from every opponent for correctly answering the bonus question, you may wish to only win an extra card from a nominated opponent — that will inject a little added rivalry into the game! You could also play as teams, either collectively or by nominating team members for each round. Other ideas would be gratefully received — do <a href="#" onclick="showPage('contact');return false;" style="color:var(--red);">get in touch</a>!</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">Maths Trumps — by Paul Hunt</span>
+  <div class="footer-links">
+    <a href="https://teachfurthermaths.weebly.com" target="_blank">Teach Further Maths</a>
+    <a href="https://globalmathstutor.weebly.com" target="_blank">Global Maths Tutor</a>
+    <a href="https://www.tarquingroup.com/teaching/secondary/tarquin-mathematics-games-offer-2018.html" target="_blank">Buy on Tarquin</a>
+  </div>
+  <p class="footer-copy">© 2026 Maths Trumps · Paul Hunt · Published by Tarquin Publications</p>
+</footer>
+
+<script>
+function showPage(page) {
+  document.querySelectorAll('.mt-page').forEach(function(p){p.style.display='none';p.classList.remove('active');});
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
+  var el = document.getElementById('page-'+page);
+  if(el){el.style.display='block';el.classList.add('active');}
+  var nav = document.getElementById('nav-'+page);
+  if(nav){nav.classList.add('active');}
+  window.scrollTo(0,0);
+}
+function handleSubmit(e){
+  e.preventDefault();
+  var btn=e.target.querySelector('.form-submit');
+  btn.textContent='Message sent ✓';
+  btn.style.background='#2a6e3f';
+  btn.disabled=true;
+}
+</script>
+</body>
+</html>
